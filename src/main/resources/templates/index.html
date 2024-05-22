@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Formulario de Dirección</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h2 class="mb-4">Dirección</h2>
+    <form th:action="@{/direccion/submit}" method="post">
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <label for="cp">Código Postal</label>
+                <input type="text" class="form-control" id="cp" name="cp" required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <label for="estado">Estado</label>
+                <select id="estado" name="estado" class="form-control" required>
+                    <option value="">Seleccione...</option>
+                    <option th:each="estado : ${estados}" th:value="${estado.clave}" th:text="${estado.nombreEstado}"></option>
+                </select>
+            </div>
+            <div class="col-md-6 form-group">
+                <label for="municipio">Municipio</label>
+                <select id="municipio" name="municipio" class="form-control">
+                    <option value="">Seleccione el estado...</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <label for="localidad">Localidad</label>
+                <select id="localidad" name="localidad" class="form-control">
+                    <option value="">Seleccione el municipio...</option>
+                </select>
+            </div>
+            <div class="col-md-6 form-group">
+                <label for="colonias">Colonia</label>
+                <select id="colonias" name="colonias" class="form-control">
+                    <option value="">Seleccione...</option>
+                </select>
+            </div>
+            <div class="col-md-12 form-group">
+                <label for="calleNumero">Calle y número</label>
+                <input type="text" class="form-control" id="calleNumero" name="calleNumero" required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 form-group">
+                <button type="submit" style="width: 100%" class="btn btn-primary">Continuar</button>
+            </div>
+        </div>
+    </form>
+    <div th:if="${message}" th:text="${message}" class="alert alert-success mt-3"></div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" th:src="@{/form.js}"></script>
+</body>
+</html>
